@@ -113,8 +113,14 @@ const IncomeDetail = () => {
       payAmt:PayAmount,
       detail:Detail
     }
-
-    axios.post('/add/incomeDetail',data).then(res=>{
+    const token=localStorage.getItem('token')
+    const headers = {
+      'Content-Type': 'application/json',
+      'authorization':  token,
+    }
+    axios.post('/add/incomeDetail',data,{
+      headers: headers
+    }).then(res=>{
       console.log(res.data)
       if(res.status===200){
         setAdd(false);
